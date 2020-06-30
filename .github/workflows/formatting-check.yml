@@ -23,7 +23,11 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-node-
           ${{ runner.OS }}-
-    - name: Install dependencies
-      run: npm ci
+    - name: Install Api dependencies
+      run: npm ci --prefix ./api/assets
     - name: Check Format of Api JS Sources
-      run: npm run format-check
+      run: npm run format-check --prefix ./api/assets
+    - name: Install Frontend dependencies
+      run: npm ci --prefix ./frontend
+    - name: Check Format of Frontend JS Sources
+      run: npm run format-check --prefix ./frontend
