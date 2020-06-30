@@ -25,3 +25,5 @@ jobs:
           ${{ runner.OS }}-
     - name: Install dependencies
       run: npm ci
+    - name: Check Format of Api JS Sources
+      run: npm run format-check
