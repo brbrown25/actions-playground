@@ -30,11 +30,13 @@ jobs:
       with:
         otp-version: ${{ matrix.otp }}
         elixir-version: ${{ matrix.elixir }}
+    - name: Dep Cache
       uses: actions/cache@v2
       id: deps-cache
       with:
         path: deps
         key: ${{ runner.os }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+    - name: Build Cache
       uses: actions/cache@v2
       id: build-cache
       with:
