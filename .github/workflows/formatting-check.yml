@@ -4,18 +4,22 @@ on: [push]
 
 jobs:
   build:
+    # set the system this will run code in
     runs-on: ubuntu-latest
+    # allow us to specify building for multiple versions of a language
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x]
         otp: [23.0]
         elixir: [1.10.3]
+    # the actual checks to run
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+    - name: Checkout Code ${{ github.github_ref }}
+      uses: actions/checkout@v2
+    # - name: Use Node.js
+    #   uses: actions/setup-node@v1
+    #   with:
+    #     node-version: ${{ matrix.node-version }}
     - name: Cache Node.js modules
       uses: actions/cache@v2
       with:
