@@ -44,6 +44,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
     - name: Install deps
       run: (cd api && mix deps.get)
+    - name: Format elixir
       run: mix format --check-formatted
     - name: Install Api dependencies
       run: npm ci --prefix ./api/assets
